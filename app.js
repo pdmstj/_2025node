@@ -5,9 +5,9 @@ const express = require('express');
 const app = express();
 
 // '/' 경로에 대해 요청을 처리합니다.
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
   // 응답 본문
-  res.send('Hello, World!');
+  res.send('Hello, World!'); 
 });
 
 // 서버가 3000번 포트에서 대기하도록 설정
