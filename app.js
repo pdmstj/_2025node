@@ -6,19 +6,11 @@ const app = express();
 
 app.use(express.json());
 
-//라우팅 설정
-app.get('/a', (req, res)=>{
-  res.status(200).send('Get A'); 
-});
+// 라우팅 파일 불러오기
+const routes = require('./routes/a');
 
-app.post('/a', (req, res)=>{
-  res.status(200).send('Post A');
-});
-
-app.get('/a/:person', (req, res) => {
-    const person = req.params.person;
-    res.status(200).send(person);
-});
+// 라우팅을 설정
+app.use('/a', aRoutes);
 
 // 서버가 3000번 포트에서 대기하도록 설정
 app.listen(3000, () => {
