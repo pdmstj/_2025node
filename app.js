@@ -7,7 +7,15 @@ const app = express();
 app.use(express.json());
 
 //라우팅 설정
-app.get('/a', (req, res) => {
+app.get('/a', (req, res)=>{
+  res.status(200).send('Get A'); 
+});
+
+app.post('/a', (req, res)=>{
+  res.status(200).send('Post A');
+});
+
+app.get('/a/:person', (req, res) => {
     const person = req.params.person;
     res.status(200).send(person);
 });
