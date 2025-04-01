@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mysql = require('mysql2');
 
 const app = express();
 
@@ -9,6 +10,21 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const travelList = ['뉴욕', '빠리', '우리집', '도쿄'];
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'mirim1',
+  database: 'traveldb'
+});
+
+db.connect((err)=>{
+  if(err) {
+    console.error('MySQL 연결 실패:', err);
+    return;
+  }
+  console.log('MySQL에 연결되었습니다');
+});
 
 app.get('/', (req, res) => {
   
