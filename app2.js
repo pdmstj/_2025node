@@ -77,12 +77,26 @@ app.post('/travel', (req, res) => {
   });
 });
 
-app.use((req, res)=>{
-
+app.put('travel/:id', (req, res)=> {
+   const travelId = req.params.id;
+   const {name} = req.body;
+   const _query = 'INSERT INTO travellist SET name=? WHERE id=?';
+   db.query(_query, [name], (err, results) => {
+    if(err) {
+      console.error('데이터베이스 쿼리 실패: ', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    res.redirect('updateSuccess');
+  });
 });
 
-app.get('travel/add-travel', (req, res) => {
-  res.render(addTravel);
+app.get('/add-travel', (req, res) => {
+  res.render('addTravel');
+});
+
+app.use((req, res)=>{
+
 });
 
 app.listen(3001, () => {
