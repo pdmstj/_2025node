@@ -95,6 +95,19 @@ app.get('/add-travel', (req, res) => {
   res.render('addTravel');
 });
 
+app.delete('travel/:id', (req, res)=> {
+  const travelId = req.params.id;
+  const _query = 'Delete From travellist name=? WHERE id=?';
+  db.query(_query, [name], (err, results) => {
+   if(err) {
+     console.error('데이터베이스 쿼리 실패: ', err);
+     res.status(500).send('Internal Server Error');
+     return;
+   }
+   res.redirect('deleteSuccess');
+ });
+});
+
 app.use((req, res)=>{
 
 });
